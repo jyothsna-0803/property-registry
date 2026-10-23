@@ -1,57 +1,114 @@
-# Sample Hardhat 3 Project (`mocha` and `ethers`)
+# Property Registry dApp
 
-This project showcases a Hardhat 3 project using `mocha` for tests and the `ethers` library for Ethereum interactions.
+A decentralized application (dApp) for registering properties and transferring property ownership on the blockchain.
 
-To learn more about Hardhat 3, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3](https://hardhat.org/hardhat3-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+## Overview
 
-## Project Overview
+The Property Registry dApp demonstrates how blockchain technology can be used to maintain a transparent, verifiable record of property registrations and ownership transfers. It combines a Solidity smart contract with a React-based frontend.
 
-This example project includes:
+## Features
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using `mocha` and ethers.js
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+- **Property Registration:** Register a property with its address and price.
+- **Ownership Tracking:** Retrieve property details, including the current owner's wallet address.
+- **Ownership Transfer:** Transfer a registered property's ownership to another wallet, subject to smart contract authorization.
+- **Smart Contract Validation:** Validate property existence, restrict transfers to authorized owners, and reject invalid recipient addresses.
+- **Blockchain Events:** Emit events for property registration and ownership transfers.
+- **Automated Tests:** Test core smart contract functionality and expected behavior.
 
-## Usage
+## Tech Stack
 
-### Running Tests
+- **Smart Contracts:** Solidity
+- **Development and Testing:** Hardhat, TypeScript, Mocha, Chai
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS
+- **Blockchain Integration:** ethers.js
+- **Network:** Polygon Amoy Testnet
 
-To run all the tests in the project, execute the following command:
+## Project Structure
 
-```shell
+```text
+property-registry/
+├── contracts/
+│   └── PropertyRegistry.sol
+├── frontend/
+│   ├── src/
+│   └── package.json
+├── test/
+├── scripts/
+├── hardhat.config.ts
+├── package.json
+└── README.md
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js and npm
+- A browser wallet such as MetaMask for frontend blockchain interactions
+- Testnet funds if you want to submit transactions on Polygon Amoy
+
+### Install Dependencies
+
+From the project root, run:
+
+```bash
+npm install
+```
+
+Install the frontend dependencies:
+
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+### Run Tests
+
+From the project root, run:
+
+```bash
 npx hardhat test
 ```
 
-You can also selectively run the Solidity or `mocha` tests:
+### Start the Frontend
 
-```shell
-npx hardhat test solidity
-npx hardhat test mocha
+From the project root:
+
+```bash
+cd frontend
+npm run dev
 ```
 
-### Make a deployment to Sepolia
+Open the local URL printed by Vite in your browser.
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+## Testnet Deployment
 
-To run the deployment to a local chain:
+The smart contract was deployed to the Polygon Amoy testnet.
 
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
+- **Contract Address:** `0x7170540E98dE68cE915D655620e552C71EEcc4d8`
+- **Network:** Polygon Amoy
+- **Block Explorer:** [View contract on PolygonScan](https://amoy.polygonscan.com/address/0x7170540E98dE68cE915D655620e552C71EEcc4d8)
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+You can use the explorer to inspect the contract and its on-chain activity.
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
+## Security Notes
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
+- Never commit private keys, wallet seed phrases, API secrets, or `.env` files.
+- Use testnet accounts and test tokens for development.
+- Review and test smart contract authorization and validation before considering production deployment.
 
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
+## Learning Outcomes
 
-After setting the variable, you can run the deployment with the Sepolia network:
+This project provided hands-on experience with Solidity smart contract development, automated testing, wallet integration, blockchain transactions, and connecting a React frontend to a deployed smart contract.
 
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
+## Future Improvements
+
+- Add property search and filtering.
+- Improve transaction status and error messages in the UI.
+- Add more comprehensive smart contract tests.
+- Explore additional validation and security testing.
+
+---
+
+**Note:** This is an educational testnet project, not a legal property ownership registry.
